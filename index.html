@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Summary & Treatment Plan: Charity</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fafafa;
+            color: #333;
+        }
+        
+        .document-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c5f2d;
+            margin-bottom: 10px;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #555;
+            text-align: center;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        
+        .main-point {
+            background: #81c784;
+            color: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            margin: 30px 0 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .main-point h2 {
+            margin: 0;
+            font-size: 1.6em;
+        }
+        
+        .sub-section {
+            background: #a5d6a7;
+            color: #1b5e20;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 20px 0 15px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .sub-section h3 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+        
+        .content {
+            padding: 15px 25px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .bullet {
+            margin: 12px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 1.05em;
+        }
+        
+        .bullet:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #66bb6a;
+            font-weight: bold;
+        }
+        
+        .sub-bullet {
+            margin: 8px 0 8px 30px;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+        }
+        
+        .sub-bullet:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #81c784;
+        }
+        
+        .definition-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .example-box {
+            background: #fff9c4;
+            border-left: 4px solid #fbc02d;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box {
+            background: #ffebee;
+            border-left: 4px solid #e53935;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .insight-box {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .diagram-container {
+            background: white;
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .dialectical-arrows {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .concept-box {
+            background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.15);
+            min-width: 180px;
+        }
+        
+        .problem-box {
+            background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.15);
+            min-width: 180px;
+        }
+        
+        .arrow {
+            font-size: 2.5em;
+            color: #66bb6a;
+            font-weight: bold;
+        }
+        
+        .cycle-arrow {
+            font-size: 2em;
+            color: #e53935;
+        }
+        
+        .vertical-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .flow-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 500;
+            text-align: center;
+            max-width: 400px;
+        }
+        
+        .down-arrow {
+            font-size: 2em;
+            color: #ff9800;
+        }
+        
+        .goal-box {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+        
+        .quote-box {
+            background: #f5f5f5;
+            border-left: 5px solid #9e9e9e;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-style: italic;
+            color: #555;
+            font-size: 1.1em;
+        }
+        
+        .strength-weakness-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .strength-column {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .weakness-column {
+            background: #ffebee;
+            border: 2px solid #e53935;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .column-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .strength-weakness-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dialectical-arrows {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document-title">
+        Clinical Summary & Treatment Plan
+    </div>
+    
+    <div class="subtitle">
+        Patient: Charity | Clinician: Brian | Date: October 2025
+    </div>
+
+    <!-- CORE UNDERSTANDING -->
+    <div class="main-point">
+        <h2><strong>Core Understanding:</strong> The Unified Challenge</h2>
+    </div>
+
+    <div class="content">
+        <div class="insight-box">
+            <strong>Central Clinical Insight:</strong> Charity's eating disorder IS her neurodivergence manifesting in adult life. This is not two separate problems—it's one unified challenge.
+        </div>
+        
+        <div class="bullet">
+            <strong>When did this emerge?</strong> The eating disorder appeared when three critical factors converged:
+        </div>
+        
+        <div class="diagram-container">
+            <div class="vertical-flow">
+                <div class="flow-box">
+                    <strong>1. Protective factors disappeared</strong><br>
+                    Parents stopped managing meals
+                </div>
+                <div class="down-arrow">↓</div>
+                <div class="flow-box">
+                    <strong>2. Life got more complex</strong><br>
+                    Adult responsibilities exceeded childhood coping capacity
+                </div>
+                <div class="down-arrow">↓</div>
+                <div class="flow-box">
+                    <strong>3. Old systems stopped working</strong><br>
+                    Perfectionist organizing that saved her as a kid now paralyzes her
+                </div>
+                <div class="down-arrow">↓</div>
+                <div class="problem-box">
+                    EATING DISORDER EMERGENCE
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="definition-box">
+            <strong>The Central Tension:</strong> The same brilliant, intense, absorptive mind that makes Charity an exceptional poet makes routine eating nearly impossible.
+        </div>
+    </div>
+
+    <!-- WHAT'S HAPPENING WITH FOOD -->
+    <div class="main-point">
+        <h2><strong>Main Issue:</strong> What's Actually Happening With Food</h2>
+    </div>
+
+    <div class="sub-section">
+        <h3>1.1: The Perfectionism Trap</h3>
+    </div>
+
+    <div class="content">
+        <div class="diagram-container">
+            <div class="vertical-flow">
+                <div class="concept-box">
+                    Wants meals to be meaningful, cultural, "done right"<br>
+                    (the "ten-meal")
+                </div>
+                <div class="down-arrow">↓</div>
+                <div class="problem-box">
+                    Executing this requires<br>
+                    OVERWHELMING EXECUTIVE FUNCTION
+                </div>
+                <div class="down-arrow">↓</div>
+                <div class="flow-box">
+                    Falls back to childhood survival foods<br>
+                    (frozen, canned, boxed)
+                </div>
+                <div class="down-arrow">↓</div>
+                <div class="flow-box">
+                    These feel chronically unsatisfying
+                </div>
+                <div class="down-arrow">↓</div>
+                <div class="problem-box">
+                    AVOIDANCE ENTIRELY
+                </div>
+            </div>
+            <div style="margin-top: 20px; color: #666; font-style: italic;">
+                The perfectionism trap: High standards create paralysis, leading to complete avoidance
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-section">
+        <h3>1.2: The Reward Problem</h3>
+    </div>
+
+    <div class="content">
+        <div class="strength-weakness-grid">
+            <div class="strength-column">
+                <div class="column-title">✓ Activities That Work</div>
+                <div class="sub-bullet">Creative work → immediate emotional feedback</div>
+                <div class="sub-bullet">Work tasks → visible progress</div>
+                <div class="sub-bullet">Clear reward loops = engagement possible</div>
+            </div>
+            <div class="weakness-column">
+                <div class="column-title">✗ Why Food Doesn't Work</div>
+                <div class="sub-bullet">Food → nothing</div>
+                <div class="sub-bullet">Just incomplete loops</div>
+                <div class="sub-bullet">Plus sensory overwhelm</div>
+                <div class="sub-bullet">= No dopamine reward = No motivation</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-section">
+        <h3>1.3: The Sensory Overwhelm</h3>
+    </div>
+
+    <div class="content">
+        <div class="bullet">
+            Food sensations can be overstimulating (textures, tastes, smells)
+        </div>
+        
+        <div class="warning-box">
+            <strong>Current Coping Mechanism:</strong> Uses cannabis/alcohol to numb sensory experience enough to eat
+        </div>
+        
+        <div class="bullet">
+            This creates a concerning dependency pattern
+        </div>
+        
+        <div class="bullet">
+            BUT: It's currently her only access point to hunger/eating
+        </div>
+        
+        <div class="insight-box">
+            <strong>Clinical Note:</strong> This isn't "substance abuse" in the traditional sense—it's adaptive self-medication for neurodivergent sensory overwhelm. However, it's unsustainable and needs replacement with healthier accommodation strategies.
+        </div>
+    </div>
+
+    <div class="sub-section">
+        <h3>1.4: The Executive Function Cascade</h3>
+    </div>
+
+    <div class="content">
+        <div class="diagram-container">
+            <div class="vertical-flow">
+                <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 20px; color: #2e7d32;">
+                    Every Single Meal Requires:
+                </div>
+                <div class="flow-box">Planning what to eat</div>
+                <div class="down-arrow">+</div>
+                <div class="flow-box">Shopping for ingredients</div>
+                <div class="down-arrow">+</div>
+                <div class="flow-box">Time management</div>
+                <div class="down-arrow">+</div>
+                <div class="flow-box">Cooking execution</div>
+                <div class="down-arrow">+</div>
+                <div class="flow-box">Cleanup afterwards</div>
+                <div class="down-arrow">×</div>
+                <div class="problem-box">PERFECTIONISM<br>applied to each step</div>
+                <div class="down-arrow">=</div>
+                <div class="problem-box" style="font-size: 1.2em;">
+                    COMPLETE PARALYSIS
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE DEEPER GRIEF -->
+    <div class="main-point">
+        <h2><strong>Deeper Layer:</strong> The Grief Beneath the Symptoms</h2>
+    </div>
+
+    <div class="content">
+        <div class="quote-box">
+            "I remember how it felt to be younger and to feel like I had things under control...I'm so disconnected from that."
+        </div>
+        
+        <div class="bullet">
+            Charity is mourning something profound: the loss of her identity as a competent person
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="definition-box">
+            <strong>What Worked in Childhood:</strong> Elaborate compensatory systems that gave her control and safety
+        </div>
+        
+        <div class="sub-bullet">Color-coded clothes to simplify morning decisions</div>
+        <div class="sub-bullet">Ritualistic routines that created predictability</div>
+        <div class="sub-bullet">Constant reorganizing to maintain environmental control</div>
+        <div class="sub-bullet">These systems compensated beautifully for ADHD symptoms</div>
+        <div class="sub-bullet">They prevented punishment and created safety</div>
+        <div class="sub-bullet"><strong>They worked brilliantly</strong></div>
+    </div>
+
+    <div class="content">
+        <div class="quote-box">
+            "The things that made me strong are the things that are holding me back now."
+        </div>
+        
+        <div class="insight-box">
+            <strong>The Paradox:</strong> The perfectionist systems that protected her as a child now create paralysis as an adult. She's not failing—her old tools are mismatched to adult complexity.
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="bullet">
+            <strong>This isn't just about food.</strong> It's about:
+        </div>
+        <div class="sub-bullet">Losing her identity as someone competent</div>
+        <div class="sub-bullet">Starting over at "ground zero"</div>
+        <div class="sub-bullet">Not knowing how to build a life that fits her actual brain</div>
+        <div class="sub-bullet">Grieving the person she thought she would become</div>
+    </div>
+
+    <!-- WHY TREATMENT HAS BEEN FRUSTRATING -->
+    <div class="main-point">
+        <h2><strong>Treatment Barrier:</strong> Why Previous Care Has Been Frustrating</h2>
+    </div>
+
+    <div class="content">
+        <div class="diagram-container">
+            <div class="dialectical-arrows">
+                <div class="concept-box">
+                    PROVIDERS SEE:<br>
+                    Articulate & Insightful<br>
+                    Patient
+                </div>
+                <div class="arrow">⟶</div>
+                <div class="flow-box" style="background: #ffe0b2; border: 2px solid #ff9800;">
+                    PROVIDERS THINK:<br>
+                    "You should be able to<br>
+                    figure this out.<br>
+                    Use your strengths!"
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <strong>The Fatal Misunderstanding:</strong> Providers don't understand that her "strengths" (perfectionism, complex systems) are precisely what's blocking her from eating.
+        </div>
+        
+        <div class="insight-box">
+            <strong>What She Actually Needs:</strong> The opposite approach—radical simplicity, externalized executive function, and permission to be "wrong."
+        </div>
+    </div>
+
+    <!-- THE TREATMENT APPROACH -->
+    <div class="main-point">
+        <h2><strong>Treatment Framework:</strong> One Clear Path Forward</h2>
+    </div>
+
+    <div class="sub-section">
+        <h3>Core Principle</h3>
+    </div>
+
+    <div class="content">
+        <div class="goal-box">
+            Stop trying to make Charity's brain do what it can't.<br>
+            Engineer her environment instead.
+        </div>
+        
+        <div class="diagram-container">
+            <div class="dialectical-arrows">
+                <div class="problem-box">
+                    OLD APPROACH:<br>
+                    "Fix" the brain<br>
+                    through willpower
+                </div>
+                <div class="arrow">⟶</div>
+                <div class="concept-box">
+                    NEW APPROACH:<br>
+                    Design environment<br>
+                    to support brain
+                </div>
+            </div>
+            <div style="margin-top: 20px; color: #666; font-style: italic;">
+                Shift from internal change to external accommodation
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-section">
+        <h3>The Single Most Important Goal</h3>
+    </div>
+
+    <div class="content">
+        <div class="goal-box">
+            Establish consistent nutrition through ANY means necessary,<br>
+            abandoning all perfectionism
+        </div>
+        
+        <div class="example-box">
+            <strong>What This Means Practically:</strong><br><br>
+            ✓ Meal replacement shakes = VALID MEAL<br>
+            ✓ Protein bar + apple = VALID MEAL<br>
+            ✓ Bowl of cereal = VALID MEAL<br>
+            ✓ Same meal every day = VALID APPROACH<br>
+            ✓ "Boring" food = PERFECTLY ACCEPTABLE<br><br>
+            <strong>The goal is nutrition entering the body, not culinary achievement.</strong>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="definition-box">
+            <strong>Treatment Philosophy:</strong> We are not teaching Charity to overcome her neurodivergence. We are building a sustainable eating system that works <em>with</em> her brain, not against it.
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="margin-top: 60px; padding: 30px; background: #e8f5e9; border-radius: 15px; text-align: center; color: #2e7d32;">
+        <strong>Next Steps:</strong><br><br>
+        → Identify 3-5 "minimum viable meals" that require zero executive function<br>
+        → Remove all food-related decision-making from Charity's plate<br>
+        → Externalize meal timing through alarms/reminders<br>
+        → Address sensory overwhelm with occupational therapy consultation<br>
+        → Begin grief work around loss of childhood competence identity
+    </div>
+
+</body>
+</html>
